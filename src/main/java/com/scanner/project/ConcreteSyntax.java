@@ -138,6 +138,7 @@ public class ConcreteSyntax {
 		} else if (token.getType().equals("Identifier")) { // Assignment
 			// TODO TO BE COMPLETED
 			s = assignment();
+			match(";");
 		} else
 			throw new RuntimeException(SyntaxError("Statement"));
 		return s;
