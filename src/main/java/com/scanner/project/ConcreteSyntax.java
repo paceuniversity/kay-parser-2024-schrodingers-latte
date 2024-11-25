@@ -163,7 +163,9 @@ public class ConcreteSyntax {
 			a.target = v;
 
 			// Parses the ":=" too.
+			token = input.nextToken();
 			match(":=");
+
 
 			Expression e;
 			e = expression();
