@@ -345,7 +345,7 @@ public class ConcreteSyntax {
 		// WhileStatement --> while ( Expression ) Statement
 		Loop l = new Loop();
 		// TODO TO BE COMPLETED
-
+		match("while");
 		match("(");
 		Expression e = expression();
 		match(")");
