@@ -129,8 +129,10 @@ public class ConcreteSyntax {
 			token = input.nextToken();
 			s = statements();
 			match("}");
-		} else if (token.getValue().equals("if")) // IfStatement
+		} else if (token.getValue().equals("if")) { // IfStatement 
+			match("if");
 			s = ifStatement();
+		}
 		else if (token.getValue().equals("while")) {
 			// WhileStatement
 			// TODO TO BE COMPLETED
@@ -166,7 +168,6 @@ public class ConcreteSyntax {
 			// Parses the ":=" too.
 			token = input.nextToken();
 			match(":=");
-
 
 			Expression e;
 			e = expression();
@@ -299,9 +300,9 @@ public class ConcreteSyntax {
 			Value v = null;
 			if (isInteger(token.getValue()))
 				v = new Value((new Integer(token.getValue())).intValue());
-			else if (token.getValue().equals("true"))
+			else if (token.getValue().equals("True"))
 				v = new Value(true);
-			else if (token.getValue().equals("false"))
+			else if (token.getValue().equals("False"))
 				v = new Value(false);
 			else
 				throw new RuntimeException(SyntaxError("Literal"));
@@ -318,6 +319,7 @@ public class ConcreteSyntax {
 
 	private Conditional ifStatement() {
 		// IfStatement --> if ( Expression ) Statement { else Statement }opt
+		
 		Conditional c = new Conditional();
 		// TODO TO BE COMPLETED
 
@@ -331,6 +333,7 @@ public class ConcreteSyntax {
 		c.thenbranch = then;
 		c.elsebranch = null;
 		if (token.getValue().equals("else")) {
+			match("else");
 			Statement elseStatement = statement();
 			c.elsebranch = elseStatement;
 		}
